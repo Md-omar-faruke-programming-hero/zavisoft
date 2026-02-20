@@ -24,12 +24,13 @@ function getSafeImageUrl(images, index = 0) {
 }
 
 export default async function ProductDetailPage({ params }) {
-  const id = Number(params?.id);
-  if (!Number.isFinite(id)) notFound();
+  const { id } = await params;
+  const productId = Number(id);
+  if (!Number.isFinite(productId)) notFound();
 
   let product;
   try {
-    product = await getProductById(id);
+    product = await getProductById(productId);
   } catch {
     notFound();
   }
