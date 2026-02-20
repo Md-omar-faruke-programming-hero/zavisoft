@@ -28,46 +28,6 @@ function normalizeText(value) {
     .toLowerCase();
 }
 
-function KicksLogo({ className }) {
-  return (
-    <svg
-      viewBox="0 0 350 88"
-      className={className}
-      role="img"
-      aria-label="KICKS"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <defs>
-        <linearGradient id="kicksLogoGradient" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#111111" />
-          <stop offset="1" stopColor="#3a3a3a" />
-        </linearGradient>
-      </defs>
-      <g fill="url(#kicksLogoGradient)">
-        <rect x="0" y="10" width="22" height="70" rx="11" />
-        <path d="M22 45 64 10h26L46 48h-24Z" />
-        <path d="M22 43h24l44 37H64L22 45v-2Z" />
-
-        <rect x="96" y="10" width="24" height="70" rx="11" />
-
-        <rect x="132" y="10" width="22" height="70" rx="11" />
-        <rect x="140" y="10" width="78" height="20" rx="10" />
-        <rect x="140" y="60" width="78" height="20" rx="10" />
-
-        <rect x="230" y="10" width="22" height="70" rx="11" />
-        <path d="M252 45 294 10h26l-44 38h-24Z" />
-        <path d="M252 43h24l44 37h-26l-42-35v-2Z" />
-
-        <rect x="318" y="10" width="78" height="20" rx="10" />
-        <rect x="318" y="34" width="64" height="20" rx="10" />
-        <rect x="318" y="60" width="78" height="20" rx="10" />
-        <rect x="318" y="10" width="22" height="44" rx="11" />
-        <rect x="374" y="34" width="22" height="46" rx="11" />
-      </g>
-    </svg>
-  );
-}
-
 export default async function Home({ searchParams }) {
   const categoryId =
     typeof searchParams?.category === "string" ? searchParams.category : "";
@@ -191,9 +151,16 @@ export default async function Home({ searchParams }) {
 
             <Link
               href="/"
-              className="flex items-center justify-center text-zinc-950"
+              className="relative h-8 w-[140px] md:h-9 md:w-[170px]"
             >
-              <KicksLogo className="h-7 w-auto md:h-8" />
+              <Image
+                src="/asset/Logo.png"
+                alt="KICKS"
+                fill
+                sizes="170px"
+                className="object-contain"
+                priority
+              />
             </Link>
 
             <div className="flex items-center gap-3">
@@ -571,7 +538,7 @@ export default async function Home({ searchParams }) {
         </main>
 
         <footer className="mt-12 overflow-hidden rounded-[40px] md:mt-16">
-          <div className="bg-[#4A69E2] px-6 py-10 text-white md:px-12 md:py-20">
+          <div className="bg-[#4A69E2] px-6 py-10 text-white md:px-12 md:pt-20">
             <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2">
               <div>
                 <div className="text-[34px] font-black leading-tight tracking-tight md:text-[40px]">
@@ -582,7 +549,7 @@ export default async function Home({ searchParams }) {
                 <div className="mt-4 text-sm text-white/85 md:text-base">
                   Sign up for free! Join the community.
                 </div>
-                <form className="mt-6 flex w-full max-w-md items-center gap-3">
+                <form className="mt-6 flex w-full max-w-md items-center gap-3 mb-[20px]">
                   <input
                     type="email"
                     placeholder="Email address"
@@ -598,20 +565,33 @@ export default async function Home({ searchParams }) {
               </div>
 
               <div className="flex items-center justify-start md:justify-end">
-                <div className="relative text-[72px] font-black leading-none tracking-tight md:text-[96px]">
-                  KICKS
-                  <span className="absolute -right-4 top-4 inline-flex h-7 w-7 items-center justify-center rounded-full bg-orange-400 text-sm font-black text-zinc-950">
-                    +
+                <div className="relative h-12 w-[200px] md:h-16 md:w-[280px]">
+                  <Image
+                    src="/asset/Logo1.png"
+                    alt="KICKS"
+                    fill
+                    sizes="280px"
+                    className="object-contain"
+                    priority
+                  />
+                  <span className="absolute -right-2 top-1 md:-right-3 md:top-2">
+                    <Image
+                      src="/asset/Add_circle.png"
+                      alt=""
+                      width={32}
+                      height={32}
+                      className="h-8 w-8"
+                    />
                   </span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="bg-zinc-900 px-6 py-10 text-white md:px-12 md:py-12 rounded-t-[40px] -mt-8">
+          <div className="bg-zinc-900 px-6 pt-10 text-white md:px-12 md:pt-12 rounded-t-[40px] -mt-8">
             <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
               <div className="md:col-span-2">
-                <div className="text-2xl font-black text-orange-400">
+                <div className="text-2xl font-black text-[#FFA52F]">
                   About us
                 </div>
                 <p className="mt-3 max-w-md text-sm leading-6 text-white/80 md:text-base">
@@ -622,7 +602,7 @@ export default async function Home({ searchParams }) {
 
               <div className="grid grid-cols-2 gap-10 md:col-span-2 md:grid-cols-3">
                 <div>
-                  <div className="text-lg font-black text-orange-400">
+                  <div className="text-lg font-black text-[#FFA52F]">
                     Categories
                   </div>
                   <div className="mt-4 flex flex-col gap-2 text-sm text-white/85">
@@ -642,7 +622,7 @@ export default async function Home({ searchParams }) {
                 </div>
 
                 <div>
-                  <div className="text-lg font-black text-orange-400">
+                  <div className="text-lg font-black text-[#FFA52F]">
                     Company
                   </div>
                   <div className="mt-4 flex flex-col gap-2 text-sm text-white/85">
@@ -655,7 +635,7 @@ export default async function Home({ searchParams }) {
                 </div>
 
                 <div>
-                  <div className="text-lg font-black text-orange-400">
+                  <div className="text-lg font-black text-[#FFA52F]">
                     Follow us
                   </div>
                   <div className="mt-4 flex items-center gap-4 text-white/85">
@@ -669,7 +649,7 @@ export default async function Home({ searchParams }) {
                         key={icon.label}
                         href="#"
                         aria-label={icon.label}
-                        className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 hover:bg-white/10"
+                        className="inline-flex h-10 w-10 items-center justify-center rounded-xl  hover:bg-white/10"
                       >
                         <svg
                           width="18"
@@ -690,9 +670,15 @@ export default async function Home({ searchParams }) {
               </div>
             </div>
 
-            <div className="mt-12 overflow-hidden rounded-[28px] bg-zinc-900">
-              <div className="text-[140px] font-black leading-none tracking-tight text-white md:text-[220px]">
-                KICKS
+            <div className="mt-12 overflow-hidden rounded-[28px] ">
+              <div className="relative h-[150px] md:h-[240px] top-[80px]">
+                <Image
+                  src="/asset/Logo1.png"
+                  alt="KICKS"
+                  fill
+                  sizes="1000px"
+                  className="object-contain opacity-30"
+                />
               </div>
             </div>
           </div>
