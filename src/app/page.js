@@ -350,28 +350,30 @@ export default async function Home({ searchParams }) {
             <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {newDrops.slice(0, 4).map((p) => (
                 <Link key={p.id} href={`/products/${p.id}`} className="group">
-                  <div className="relative overflow-hidden rounded-[26px] border-[6px] border-white bg-zinc-100">
-                    <span className="absolute left-3 top-3 z-10 rounded-xl bg-blue-600 px-3 py-1 text-xs font-semibold text-white">
-                      New
-                    </span>
-                    <div className="relative aspect-square">
-                      <div className="absolute inset-6">
-                        <Image
-                          src={getSafeImageUrl(p.images)}
-                          alt={p.title}
-                          fill
-                          sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 22vw"
-                          className="object-contain transition-transform duration-300 group-hover:scale-[1.03]"
-                        />
+                  <div className="rounded-[30px] bg-white p-[6px] shadow-[0_18px_30px_rgba(0,0,0,0.06)]">
+                    <div className="relative overflow-hidden rounded-[24px] bg-[#f1f2f3]">
+                      <span className="absolute  rounded-br-2xl left-0 top-0 z-10 bg-blue-600 px-4 py-2 text-xs font-semibold text-white">
+                        New
+                      </span>
+                      <div className="relative aspect-square">
+                        <div className="absolute inset-10">
+                          <Image
+                            src={getSafeImageUrl(p.images)}
+                            alt={p.title}
+                            fill
+                            sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 22vw"
+                            className="object-contain drop-shadow-[0_18px_18px_rgba(0,0,0,0.18)] transition-transform duration-300 group-hover:scale-[1.03]"
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="mt-4 text-sm font-extrabold uppercase leading-5 tracking-tight text-zinc-900 md:text-base">
+                  <div className="mt-4 text-[18px] font-black uppercase leading-6 tracking-tight text-zinc-900">
                     {p.title}
                   </div>
 
-                  <div className="mt-3 inline-flex w-full items-center justify-center rounded-xl bg-zinc-900 px-4 py-3 text-[10px] font-semibold uppercase tracking-widest text-white md:text-xs">
+                  <div className="mt-3 inline-flex h-12 w-full items-center justify-center rounded-xl bg-zinc-900 px-4 text-xs font-semibold uppercase tracking-widest text-white">
                     <span>View product -</span>
                     <span className="ml-2 text-amber-400">
                       {formatPrice(p.price)}
@@ -494,184 +496,205 @@ export default async function Home({ searchParams }) {
             </div>
           </section>
 
-          <section className="mt-6 md:mt-10">
-            <div className="flex items-center justify-between">
-              <h2 className="text-lg font-extrabold tracking-tight md:text-xl">
+          <section className="mt-10 md:mt-14">
+            <div className="flex items-start justify-between gap-6">
+              <h2 className="text-[44px] font-black leading-none tracking-tight text-zinc-950 md:text-[64px]">
                 REVIEWS
               </h2>
-              <span className="rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold text-white">
-                View all
-              </span>
+              <button
+                type="button"
+                className="mt-2 inline-flex h-10 items-center justify-center rounded-xl bg-blue-600 px-5 text-xs font-semibold uppercase tracking-widest text-white hover:bg-blue-500"
+              >
+                See all
+              </button>
             </div>
 
-            <div className="mt-4 flex gap-3 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              {reviews.map((r, idx) => (
+            <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+              {products.slice(0, 3).map((p, idx) => (
                 <div
-                  key={`${r.name}-${idx}`}
-                  className="min-w-[260px] rounded-2xl bg-white p-4 ring-1 ring-zinc-200"
+                  key={`review-card-${p.id}`}
+                  className="overflow-hidden rounded-[26px] bg-white ring-1 ring-zinc-200"
                 >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-zinc-950 text-xs font-semibold text-white">
-                        {r.name
-                          .split(" ")
-                          .slice(0, 2)
-                          .map((x) => x[0])
-                          .join("")}
-                      </span>
-                      <div className="leading-tight">
-                        <div className="text-sm font-semibold">{r.name}</div>
-                        <div className="text-xs text-zinc-500">{r.handle}</div>
+                  <div className="relative px-6 py-5">
+                    <div className="text-base font-extrabold text-zinc-950">
+                      Good Quality
+                    </div>
+                    <div className="mt-1 max-w-xs text-sm leading-5 text-zinc-500">
+                      I highly recommend shopping from kicks
+                    </div>
+
+                    <div className="mt-3 flex items-center gap-2">
+                      <div className="flex items-center gap-1">
+                        {Array.from({ length: 5 }).map((_, i) => (
+                          <svg
+                            key={i}
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="#f59e0b"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M12 17.3 5.8 21l1.6-7.1L2 9.3l7.2-.6L12 2l2.8 6.7 7.2.6-5.4 4.6 1.6 7.1L12 17.3Z" />
+                          </svg>
+                        ))}
+                      </div>
+                      <div className="text-sm font-semibold text-zinc-700">
+                        5.0
                       </div>
                     </div>
-                    <div className="flex items-center gap-0.5">
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <svg
-                          key={i}
-                          width="14"
-                          height="14"
-                          viewBox="0 0 24 24"
-                          fill={i < r.rating ? "#f59e0b" : "none"}
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="shrink-0"
-                        >
-                          <path
-                            d="M12 17.3 5.8 21l1.6-7.1L2 9.3l7.2-.6L12 2l2.8 6.7 7.2.6-5.4 4.6 1.6 7.1L12 17.3Z"
-                            stroke={i < r.rating ? "#f59e0b" : "#d4d4d8"}
-                            strokeWidth="1.5"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      ))}
+
+                    <div className="absolute right-5 top-5 h-12 w-12 overflow-hidden rounded-full bg-zinc-200 ring-2 ring-white">
+                      <Image
+                        src={getSafeImageUrl(p.images)}
+                        alt={p.title}
+                        fill
+                        sizes="48px"
+                        className="object-cover"
+                      />
                     </div>
                   </div>
-                  <p className="mt-3 text-sm leading-6 text-zinc-700">
-                    {r.text}
-                  </p>
+
+                  <div className="relative aspect-[4/3] bg-zinc-200">
+                    <Image
+                      src={getSafeImageUrl(p.images)}
+                      alt={p.title}
+                      fill
+                      sizes="(max-width: 768px) 92vw, 33vw"
+                      className="object-cover"
+                      priority={idx === 0}
+                    />
+                  </div>
                 </div>
               ))}
-            </div>
-
-            <div className="mt-4 grid grid-cols-3 gap-3 md:mt-6 md:grid-cols-6">
-              {products.slice(0, 6).map((p) => (
-                <div
-                  key={`review-img-${p.id}`}
-                  className="relative aspect-square overflow-hidden rounded-2xl bg-zinc-200"
-                >
-                  <Image
-                    src={getSafeImageUrl(p.images)}
-                    alt={p.title}
-                    fill
-                    sizes="(max-width: 768px) 30vw, 15vw"
-                    className="object-cover"
-                  />
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section className="mt-6 overflow-hidden rounded-[28px] bg-blue-600 text-white md:mt-10">
-            <div className="grid grid-cols-1 gap-4 px-5 py-6 md:grid-cols-2 md:items-center md:px-8 md:py-10">
-              <div>
-                <div className="text-xs font-semibold uppercase tracking-widest text-white/80">
-                  JOIN OUR KICKSPLUS CLUB
-                </div>
-                <div className="mt-2 text-2xl font-extrabold tracking-tight md:text-3xl">
-                  &amp; Get 15% Off
-                </div>
-                <div className="mt-2 text-sm leading-6 text-white/85">
-                  Sign up for exclusive drops, early access, and members-only
-                  deals.
-                </div>
-                <div className="mt-4 flex flex-col gap-3 sm:flex-row">
-                  <button
-                    type="button"
-                    className="h-11 rounded-2xl bg-white px-5 text-sm font-semibold text-blue-700 hover:bg-white/90"
-                  >
-                    Join now
-                  </button>
-                  <Link
-                    href="/"
-                    className="inline-flex h-11 items-center justify-center rounded-2xl bg-white/10 px-5 text-sm font-semibold text-white ring-1 ring-white/15 hover:bg-white/15"
-                  >
-                    Learn more
-                  </Link>
-                </div>
-              </div>
-              <div className="flex items-center justify-end">
-                <div className="rounded-2xl bg-white/15 px-6 py-4 text-3xl font-black tracking-[0.2em] md:text-4xl">
-                  KICKS
-                </div>
-              </div>
             </div>
           </section>
         </main>
 
-        <footer className="bg-zinc-950 px-5 py-8 text-white md:px-8 md:py-12">
-          <div className="grid grid-cols-2 gap-6 text-sm md:grid-cols-4 md:gap-8">
-            <div className="col-span-2 md:col-span-1">
-              <div className="text-sm font-semibold tracking-[0.3em]">KICKS</div>
-              <p className="mt-3 max-w-xs text-sm leading-6 text-white/70">
-                Premium sneakers and essentials. Built for comfort, designed to
-                stand out.
-              </p>
-            </div>
-            <div>
-              <div className="text-xs font-semibold uppercase tracking-widest text-white/70">
-                Categories
-              </div>
-              <div className="mt-3 flex flex-col gap-2 text-white/80">
-                {categoriesPreview.slice(0, 3).map((c) => (
-                  <Link
-                    key={`footer-cat-${c.id}`}
-                    href={{ pathname: "/", query: { category: c.id } }}
-                    className="hover:text-white"
+        <footer className="mt-12 overflow-hidden rounded-[40px] md:mt-16">
+          <div className="bg-[#4A69E2] px-6 py-10 text-white md:px-12 md:py-20">
+            <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2">
+              <div>
+                <div className="text-[34px] font-black leading-tight tracking-tight md:text-[40px]">
+                  JOIN OUR KICKSPLUS
+                  <br />
+                  CLUB &amp; GET 15% OFF
+                </div>
+                <div className="mt-4 text-sm text-white/85 md:text-base">
+                  Sign up for free! Join the community.
+                </div>
+                <form className="mt-6 flex w-full max-w-md items-center gap-3">
+                  <input
+                    type="email"
+                    placeholder="Email address"
+                    className="h-11 flex-1 rounded-xl bg-white/10 px-4 text-sm text-white placeholder:text-white/70 outline-none ring-1 ring-white/25 focus:ring-2 focus:ring-white/40"
+                  />
+                  <button
+                    type="button"
+                    className="h-11 rounded-xl bg-zinc-950 px-6 text-xs font-semibold uppercase tracking-widest text-white hover:bg-zinc-900"
                   >
-                    {c.name}
-                  </Link>
-                ))}
+                    Submit
+                  </button>
+                </form>
               </div>
-            </div>
-            <div>
-              <div className="text-xs font-semibold uppercase tracking-widest text-white/70">
-                Support
-              </div>
-              <div className="mt-3 flex flex-col gap-2 text-white/80">
-                <a href="#" className="hover:text-white">
-                  Shipping &amp; Returns
-                </a>
-                <a href="#" className="hover:text-white">
-                  Contact
-                </a>
-                <a href="#" className="hover:text-white">
-                  FAQs
-                </a>
-              </div>
-            </div>
-            <div>
-              <div className="text-xs font-semibold uppercase tracking-widest text-white/70">
-                Follow us
-              </div>
-              <div className="mt-3 flex flex-col gap-2 text-white/80">
-                <a href="#" className="hover:text-white">
-                  Instagram
-                </a>
-                <a href="#" className="hover:text-white">
-                  X
-                </a>
-                <a href="#" className="hover:text-white">
-                  YouTube
-                </a>
+
+              <div className="flex items-center justify-start md:justify-end">
+                <div className="relative text-[72px] font-black leading-none tracking-tight md:text-[96px]">
+                  KICKS
+                  <span className="absolute -right-4 top-4 inline-flex h-7 w-7 items-center justify-center rounded-full bg-orange-400 text-sm font-black text-zinc-950">
+                    +
+                  </span>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="mt-10 border-t border-white/10 pt-6 text-xs text-white/60">
-            © {new Date().getFullYear()} KICKS
-          </div>
+          <div className="bg-zinc-900 px-6 py-10 text-white md:px-12 md:py-12 rounded-t-[40px] -mt-8">
+            <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
+              <div className="md:col-span-2">
+                <div className="text-2xl font-black text-orange-400">
+                  About us
+                </div>
+                <p className="mt-3 max-w-md text-sm leading-6 text-white/80 md:text-base">
+                  We are the biggest hyperstore in the universe. We got you all
+                  cover with our exclusive collections and latest drops.
+                </p>
+              </div>
 
-          <div className="mt-6 text-[56px] font-black leading-none tracking-tight text-white md:text-[92px]">
-            KICKS
+              <div className="grid grid-cols-2 gap-10 md:col-span-2 md:grid-cols-3">
+                <div>
+                  <div className="text-lg font-black text-orange-400">
+                    Categories
+                  </div>
+                  <div className="mt-4 flex flex-col gap-2 text-sm text-white/85">
+                    {[
+                      "Runners",
+                      "Sneakers",
+                      "Basketball",
+                      "Outdoor",
+                      "Golf",
+                      "Hiking",
+                    ].map((name) => (
+                      <a key={name} href="#" className="hover:text-white">
+                        {name}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <div className="text-lg font-black text-orange-400">
+                    Company
+                  </div>
+                  <div className="mt-4 flex flex-col gap-2 text-sm text-white/85">
+                    {["About", "Contact", "Blogs"].map((name) => (
+                      <a key={name} href="#" className="hover:text-white">
+                        {name}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <div className="text-lg font-black text-orange-400">
+                    Follow us
+                  </div>
+                  <div className="mt-4 flex items-center gap-4 text-white/85">
+                    {[
+                      { label: "Facebook", path: "M14 9h2V6h-2c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h2.2l.8-3H13v-2c0-.6.4-1 1-1Z" },
+                      { label: "Instagram", path: "M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm5 6.5A3.5 3.5 0 1 0 15.5 12 3.5 3.5 0 0 0 12 8.5Zm6.2-1.7a.9.9 0 1 0-.9.9.9.9 0 0 0 .9-.9Z" },
+                      { label: "X", path: "M18 2h3l-7 8 8 12h-6l-5-7-6 7H2l8-9L2 2h6l5 6 5-6Z" },
+                      { label: "TikTok", path: "M14 2v12.2a3.8 3.8 0 1 1-3-3.7V7.5c1.4 1.7 3.5 2.7 6 2.7V7.2c-1.6 0-2.8-.6-3-2.4V2h0Z" },
+                    ].map((icon) => (
+                      <a
+                        key={icon.label}
+                        href="#"
+                        aria-label={icon.label}
+                        className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 hover:bg-white/10"
+                      >
+                        <svg
+                          width="18"
+                          height="18"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d={icon.path}
+                            fill="currentColor"
+                          />
+                        </svg>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-12 overflow-hidden rounded-[28px] bg-zinc-900">
+              <div className="text-[140px] font-black leading-none tracking-tight text-white md:text-[220px]">
+                KICKS
+              </div>
+            </div>
           </div>
         </footer>
       </div>
