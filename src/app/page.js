@@ -108,7 +108,10 @@ export default async function Home({ searchParams }) {
                   <span>New Drops</span>
                   <span aria-hidden="true">🔥</span>
                 </Link>
-                <button type="button" className="inline-flex items-center gap-1">
+                <button
+                  type="button"
+                  className="inline-flex items-center gap-1"
+                >
                   <span>Men</span>
                   <svg
                     width="14"
@@ -127,7 +130,10 @@ export default async function Home({ searchParams }) {
                     />
                   </svg>
                 </button>
-                <button type="button" className="inline-flex items-center gap-1">
+                <button
+                  type="button"
+                  className="inline-flex items-center gap-1"
+                >
                   <span>Women</span>
                   <svg
                     width="14"
@@ -231,7 +237,7 @@ export default async function Home({ searchParams }) {
           <section className="pt-8 md:pt-10">
             <h1 className="text-center text-[56px] font-black leading-none tracking-tight text-zinc-950 md:text-[160.5px]">
               <span>DO IT </span>
-              <span className="text-blue-600">RIGHT</span>
+              <span className="text-[#4A69E2]">RIGHT</span>
             </h1>
           </section>
 
@@ -239,7 +245,9 @@ export default async function Home({ searchParams }) {
             <div className="relative overflow-hidden rounded-[42px] bg-[#f3b13a] p-5 md:p-8">
               <div className="relative overflow-hidden rounded-[34px] bg-black/10">
                 <Link
-                  href={featuredProduct ? `/products/${featuredProduct.id}` : "/"}
+                  href={
+                    featuredProduct ? `/products/${featuredProduct.id}` : "/"
+                  }
                   className="relative block aspect-[16/10] w-full md:aspect-[2/1]"
                 >
                   {featuredProduct ? (
@@ -283,7 +291,9 @@ export default async function Home({ searchParams }) {
                         >
                           {featuredProduct ? (
                             <Image
-                              src={getSafeImageUrl(featuredProduct.images.slice(idx))}
+                              src={getSafeImageUrl(
+                                featuredProduct.images.slice(idx),
+                              )}
                               alt={`${featuredProduct.title} ${idx + 1}`}
                               fill
                               sizes="92px"
@@ -351,110 +361,60 @@ export default async function Home({ searchParams }) {
             </div>
           </section>
 
-          <section className="mt-10 md:mt-14">
-            <div className="rounded-[28px] bg-zinc-950 px-6 py-8 text-white md:px-10 md:py-10">
-              <div className="flex items-start justify-between gap-6">
-                <h2 className="text-[40px] font-black leading-none tracking-tight md:text-[56px]">
+          <section className="mt-14">
+            <div className="bg-zinc-950 rounded-[32px] pt-10 pl-8 md:pt-12 md:pl-12 text-white">
+           
+              <div className="flex items-center justify-between pr-8 md:pr-12">
+                <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight">
                   CATEGORIES
                 </h2>
-                <div className="mt-1 flex items-center gap-2">
-                  <button
-                    type="button"
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-white hover:bg-white/15"
-                    aria-label="Previous"
-                  >
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M15 18 9 12l6-6"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
+
+                <div className="flex items-center gap-2">
+                  <button className="h-9 w-9 rounded-md bg-white/20 flex items-center justify-center">
+                    ‹
                   </button>
-                  <button
-                    type="button"
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white text-zinc-950 hover:bg-zinc-100"
-                    aria-label="Next"
-                  >
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="m9 18 6-6-6-6"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
+                  <button className="h-9 w-9 rounded-md bg-white text-black flex items-center justify-center">
+                    ›
                   </button>
                 </div>
               </div>
 
-              <div className="mt-8 overflow-hidden rounded-[28px] bg-white ring-1 ring-black/5">
-                <div className="grid grid-cols-1 md:grid-cols-2 md:divide-x md:divide-zinc-200">
+              
+              <div className="mt-8 overflow-hidden rounded-tl-[28px]  bg-white">
+                <div className="grid md:grid-cols-2">
                   {categoriesPreview.slice(1, 3).map((c, idx) => (
                     <Link
                       key={c.id}
                       href={{ pathname: "/", query: { category: c.id } }}
-                      className={`group relative block text-zinc-950 ${
-                        idx === 0 ? "bg-[#f1f2f3]" : "bg-white"
-                      }`}
+                      className="group relative block"
                     >
-                      <div className="relative h-[240px] sm:h-[300px] md:h-[360px]">
-                        <div className="absolute inset-8 md:inset-10">
+                      <div
+                        className={`relative h-[260px] md:h-[360px] ${
+                          idx === 0 ? "bg-[#e9eaec]" : "bg-[#f7f7f7]"
+                        }`}
+                      >
+                        <div className="absolute inset-10">
                           <Image
                             src={getSafeImageUrl([c.image])}
                             alt={c.name}
                             fill
-                            sizes="(max-width: 768px) 92vw, 520px"
                             className="object-contain"
                           />
                         </div>
                       </div>
 
-                      <div className="absolute bottom-7 left-7 md:bottom-10 md:left-10">
-                        <div className="text-2xl font-black uppercase leading-7 tracking-tight md:text-3xl md:leading-9">
-                          {String(c.name ?? "Category").toUpperCase()}
-                          <br />
-                      
-                        </div>
+                      {idx === 0 && (
+                        <div className="hidden md:block absolute top-0 right-0 h-full w-px bg-zinc-200" />
+                      )}
+
+                      <div className="absolute bottom-8 left-8">
+                        <h3 className="text-2xl md:text-3xl font-extrabold text-zinc-900 uppercase">
+                          {c.name}
+                        </h3>
                       </div>
 
-                      <span className="absolute bottom-7 right-7 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-zinc-900 text-white md:bottom-10 md:right-10">
-                        <svg
-                          width="16"
-                          height="16"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M7 17 17 7"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                          />
-                          <path
-                            d="M10 7h7v7"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
+                      <span className="absolute bottom-8 right-8 h-10 w-10 rounded-lg bg-black text-white flex items-center justify-center">
+                        ↗
                       </span>
                     </Link>
                   ))}
@@ -640,10 +600,22 @@ export default async function Home({ searchParams }) {
                   </div>
                   <div className="mt-4 flex items-center gap-4 text-white/85">
                     {[
-                      { label: "Facebook", path: "M14 9h2V6h-2c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h2.2l.8-3H13v-2c0-.6.4-1 1-1Z" },
-                      { label: "Instagram", path: "M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm5 6.5A3.5 3.5 0 1 0 15.5 12 3.5 3.5 0 0 0 12 8.5Zm6.2-1.7a.9.9 0 1 0-.9.9.9.9 0 0 0 .9-.9Z" },
-                      { label: "X", path: "M18 2h3l-7 8 8 12h-6l-5-7-6 7H2l8-9L2 2h6l5 6 5-6Z" },
-                      { label: "TikTok", path: "M14 2v12.2a3.8 3.8 0 1 1-3-3.7V7.5c1.4 1.7 3.5 2.7 6 2.7V7.2c-1.6 0-2.8-.6-3-2.4V2h0Z" },
+                      {
+                        label: "Facebook",
+                        path: "M14 9h2V6h-2c-2.2 0-4 1.8-4 4v2H8v3h2v7h3v-7h2.2l.8-3H13v-2c0-.6.4-1 1-1Z",
+                      },
+                      {
+                        label: "Instagram",
+                        path: "M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm5 6.5A3.5 3.5 0 1 0 15.5 12 3.5 3.5 0 0 0 12 8.5Zm6.2-1.7a.9.9 0 1 0-.9.9.9.9 0 0 0 .9-.9Z",
+                      },
+                      {
+                        label: "X",
+                        path: "M18 2h3l-7 8 8 12h-6l-5-7-6 7H2l8-9L2 2h6l5 6 5-6Z",
+                      },
+                      {
+                        label: "TikTok",
+                        path: "M14 2v12.2a3.8 3.8 0 1 1-3-3.7V7.5c1.4 1.7 3.5 2.7 6 2.7V7.2c-1.6 0-2.8-.6-3-2.4V2h0Z",
+                      },
                     ].map((icon) => (
                       <a
                         key={icon.label}
@@ -658,10 +630,7 @@ export default async function Home({ searchParams }) {
                           fill="none"
                           xmlns="http://www.w3.org/2000/svg"
                         >
-                          <path
-                            d={icon.path}
-                            fill="currentColor"
-                          />
+                          <path d={icon.path} fill="currentColor" />
                         </svg>
                       </a>
                     ))}
@@ -683,6 +652,9 @@ export default async function Home({ searchParams }) {
             </div>
           </div>
         </footer>
+        <div className="mt-6 text-center text-sm text-[#232321]/80">
+          <p>© All rights reserved </p>
+        </div>
       </div>
     </div>
   );
