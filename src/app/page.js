@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getCategories, getProducts } from "../lib/platzi";
+import HeaderCartCount from "../components/HeaderCartCount";
 
 function formatPrice(value) {
   try {
@@ -45,10 +46,10 @@ export default async function Home({ searchParams }) {
   const q = normalizeText(query);
   const filteredProducts = q
     ? products.filter((p) => {
-        const title = normalizeText(p.title);
-        const description = normalizeText(p.description);
-        return title.includes(q) || description.includes(q);
-      })
+      const title = normalizeText(p.title);
+      const description = normalizeText(p.description);
+      return title.includes(q) || description.includes(q);
+    })
     : products;
 
   const featuredProduct = filteredProducts[0] ?? products[0];
@@ -222,13 +223,7 @@ export default async function Home({ searchParams }) {
                 </svg>
               </button>
 
-              <button
-                type="button"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-orange-400 text-sm font-extrabold text-zinc-950 ring-1 ring-orange-300"
-                aria-label="Cart count"
-              >
-                0
-              </button>
+              <HeaderCartCount />
             </div>
           </div>
         </header>
@@ -363,7 +358,7 @@ export default async function Home({ searchParams }) {
 
           <section className="mt-14">
             <div className="bg-zinc-950 rounded-[32px] pt-10 pl-8 md:pt-12 md:pl-12 text-white">
-           
+
               <div className="flex items-center justify-between pr-8 md:pr-12">
                 <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight">
                   CATEGORIES
@@ -379,7 +374,7 @@ export default async function Home({ searchParams }) {
                 </div>
               </div>
 
-              
+
               <div className="mt-8 overflow-hidden rounded-tl-[28px]  bg-white">
                 <div className="grid md:grid-cols-2">
                   {categoriesPreview.slice(1, 3).map((c, idx) => (
@@ -389,9 +384,8 @@ export default async function Home({ searchParams }) {
                       className="group relative block"
                     >
                       <div
-                        className={`relative h-[260px] md:h-[360px] ${
-                          idx === 0 ? "bg-[#e9eaec]" : "bg-[#f7f7f7]"
-                        }`}
+                        className={`relative h-[260px] md:h-[360px] ${idx === 0 ? "bg-[#e9eaec]" : "bg-[#f7f7f7]"
+                          }`}
                       >
                         <div className="absolute inset-10">
                           <Image
