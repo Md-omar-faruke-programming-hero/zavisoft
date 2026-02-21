@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 import { getCategories } from "../../lib/platzi";
 
 function getSafeImageUrl(value) {
@@ -14,23 +16,9 @@ export default async function CategoriesPage() {
 
   return (
     <div className="min-h-screen bg-white text-zinc-950">
-      <header className="border-b border-zinc-200">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
-          <Link href="/" className="flex items-center gap-2">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-zinc-950 text-sm font-semibold text-white">
-              Z
-            </span>
-            <span className="text-sm font-semibold tracking-tight sm:text-base">
-              Zavisoft Store
-            </span>
-          </Link>
-          <nav className="flex items-center gap-3 text-sm font-medium text-zinc-700">
-            <Link href="/" className="hover:text-zinc-950">
-              Products
-            </Link>
-          </nav>
-        </div>
-      </header>
+      <div className="mx-auto w-full max-w-6xl px-4 md:px-8">
+        <Header />
+      </div>
 
       <main className="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-10">
         <div className="flex flex-col gap-6">
@@ -69,6 +57,10 @@ export default async function CategoriesPage() {
           </div>
         </div>
       </main>
+
+      <div className="mx-auto w-full max-w-6xl px-4 pb-12 md:px-8">
+        <Footer />
+      </div>
     </div>
   );
 }

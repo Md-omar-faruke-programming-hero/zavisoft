@@ -10,6 +10,7 @@ const nextConfig = {
       { protocol: "https", hostname: "api.lorem.space" },
       { protocol: "https", hostname: "cdn2.thecatapi.com" },
       { protocol: "https", hostname: "loremflickr.com" },
+      { protocol: "https", hostname: "placehold.co" },
     ],
   },
 };
