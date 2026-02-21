@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Zavisoft
 
-## Getting Started
+## Overview
+Zavisoft is a modern web application built with Next.js and React. It features a dynamic shopping cart system, product catalog, and responsive design, providing a seamless e-commerce experience.
 
-First, run the development server:
+## Live URL
+[https://zavisoft-gamma.vercel.app/](https://zavisoft-gamma.vercel.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## GitHub Repository
+[https://github.com/Md-omar-faruke-programming-hero/zavisoft](https://github.com/Md-omar-faruke-programming-hero/zavisoft)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
+- **Framework:** Next.js (v16)
+- **Library:** React (v19)
+- **Styling:** Tailwind CSS (v4)
+- **UI Components/Alerts:** SweetAlert2
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Setup Instructions
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Md-omar-faruke-programming-hero/zavisoft.git
+   ```
 
-## Learn More
+2. **Navigate to the project directory:**
+   ```bash
+   cd zavisoft
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+3. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5. **Open the application:**
+   Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Notes
+- Ensure you have Node.js installed on your machine to run the project.
+- The project leverages modern React features (React 19) and the latest Next.js 16 app router capabilities.
+- The styling is handled via Tailwind CSS v4 for utility-first responsive design.
