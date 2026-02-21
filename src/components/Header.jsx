@@ -98,13 +98,13 @@ export default function Header() {
 
                 <Link
                     href="/"
-                    className="relative h-8 w-[140px] md:h-9 md:w-[170px]"
+                    className="relative h-7 w-[100px] sm:h-8 sm:w-[140px] md:h-9 md:w-[170px] shrink-0"
                 >
                     <Image
                         src="/asset/Logo.png"
                         alt="KICKS"
                         fill
-                        sizes="170px"
+                        sizes="(max-width: 640px) 100px, (max-width: 768px) 140px, 170px"
                         className="object-contain"
                         priority
                     />

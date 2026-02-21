@@ -5,6 +5,7 @@ import { getProductById, getProducts } from "../../../lib/platzi";
 import ProductOptions from "../../../components/ProductOptions";
 import RelatedProductsCarousel from "../../../components/RelatedProductsCarousel";
 
+// Formats a numeric value into a US Dollar currency string
 function formatPrice(value) {
   try {
     return new Intl.NumberFormat("en-US", {
@@ -17,6 +18,7 @@ function formatPrice(value) {
   }
 }
 
+// Safely extracts a valid image URL from various potential input formats
 function getSafeImageUrl(images, index = 0) {
   try {
     let imgArray = images;
@@ -48,6 +50,7 @@ function getSafeImageUrl(images, index = 0) {
   }
 }
 
+// Main Product Detail Page component responsible for fetching and rendering a single product
 export default async function ProductDetailPage({ params }) {
   const { id } = await params;
   const productId = Number(id);
@@ -85,15 +88,16 @@ export default async function ProductDetailPage({ params }) {
     .slice(0, 16);
 
   return (
-    <main className="pt-10 md:pt-12">
-      <div className="grid grid-cols-1  md:grid-cols-2">
-        <section className="grid grid-cols-2 gap-4">
+    <main className="pt-8 md:pt-12 px-0 sm:px-4 md:px-0">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        {/* Product Images Gallery */}
+        <section className="grid grid-cols-2 gap-3 sm:gap-4 px-4 sm:px-0">
           {[0, 1, 2, 3].map((idx) => (
             <div
               key={`img-${idx}`}
-              className="relative  overflow-hidden rounded-[26px] bg-[#f1f2f3]"
+              className="relative aspect-square overflow-hidden rounded-[26px] bg-[#f1f2f3]"
             >
-              <div className="absolute inset-8">
+              <div className="absolute inset-3 sm:inset-6 md:inset-8">
                 <SafeImage
                   src={imageAt(idx)}
                   alt={product.title}
@@ -109,6 +113,7 @@ export default async function ProductDetailPage({ params }) {
 
         </section>
 
+        {/* Product Details Section: Title, Price, Options, and Description */}
         <section className="rounded-[26px] bg-[#e9e6df] px-6 py-6 md:px-8 md:py-8">
           <div className="inline-flex rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold text-white">
             New Release
@@ -141,6 +146,7 @@ export default async function ProductDetailPage({ params }) {
         </section>
       </div>
 
+      {/* Related Products Carousel: Displays other products the user might like */}
       <RelatedProductsCarousel products={relatedProducts} />
     </main>
   );

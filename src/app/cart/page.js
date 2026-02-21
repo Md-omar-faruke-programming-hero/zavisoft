@@ -2,6 +2,7 @@ import SafeImage from "../../components/SafeImage";
 import Link from "next/link";
 import { getProducts } from "../../lib/platzi";
 import CartOverview from "../../components/CartOverview";
+// Formats a numeric value into a US Dollar currency string
 function formatPrice(value) {
     try {
         return new Intl.NumberFormat("en-US", {
@@ -14,6 +15,7 @@ function formatPrice(value) {
     }
 }
 
+// Safely extracts a valid image URL from various potential input formats
 function getSafeImageUrl(images, index = 0) {
     try {
         let imgArray = images;
@@ -45,6 +47,7 @@ function getSafeImageUrl(images, index = 0) {
     }
 }
 
+// Main Cart Page component responsible for displaying cart items and related products
 export default async function CartPage() {
     let allProducts = [];
     try {
@@ -57,6 +60,7 @@ export default async function CartPage() {
 
     return (
         <main className="pt-10 md:pt-12">
+            {/* Promo Banner Section: Displays current sales or general information */}
             <section className="mb-10">
                 <h1 className="text-[32px] font-black leading-tight text-zinc-900 md:text-[40px]">
                     Saving to celebrate
@@ -70,8 +74,10 @@ export default async function CartPage() {
                 </p>
             </section>
 
+            {/* Cart Overview: Client component rendering the actual cart items */}
             <CartOverview />
 
+            {/* Related Products Section: Suggestions for items the user might also like */}
             <div className="mt-16 mb-4">
                 <div className="flex items-center justify-between">
                     <h2 className="text-3xl font-black text-zinc-900">

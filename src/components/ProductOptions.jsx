@@ -74,7 +74,7 @@ export default function ProductOptions({ product }) {
                 </button>
             </div>
 
-            <div className="mt-3 grid grid-cols-7 gap-2">
+            <div className="mt-3 grid grid-cols-5 sm:grid-cols-7 gap-2">
                 {sizes.map((size) => (
                     <button
                         key={size}
@@ -96,8 +96,8 @@ export default function ProductOptions({ product }) {
                     onClick={handleAddToCart}
                     disabled={itemInCart}
                     className={`flex h-11 flex-1 items-center justify-center rounded-xl text-xs font-semibold uppercase tracking-widest text-white transition-all ${itemInCart
-                            ? "bg-emerald-600 cursor-not-allowed"
-                            : "bg-zinc-900 hover:bg-zinc-800 hover:scale-105 active:scale-95"
+                        ? "bg-emerald-600 cursor-not-allowed"
+                        : "bg-zinc-900 hover:bg-zinc-800 hover:scale-105 active:scale-95"
                         }`}
                 >
                     {itemInCart ? "Added to cart ✓" : "Add to cart"}

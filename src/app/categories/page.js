@@ -2,6 +2,7 @@ import SafeImage from "../../components/SafeImage";
 import Link from "next/link";
 import { getCategories } from "../../lib/platzi";
 
+// Safely extracts a valid image URL from the input string
 function getSafeImageUrl(value) {
   if (typeof value !== "string" || !value.trim()) return "/file.svg";
   const cleaned = value.trim().replace(/^"+|"+$/g, "");
@@ -9,6 +10,7 @@ function getSafeImageUrl(value) {
   return cleaned;
 }
 
+// Main Categories Page component responsible for fetching and displaying all product categories
 export default async function CategoriesPage() {
   const categories = await getCategories();
 
@@ -34,6 +36,7 @@ export default async function CategoriesPage() {
           </div>
         ) : (
           <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4">
+            {/* Categories Grid: Displays the list of categories as clickable links */}
             {categories.map((c) => (
               <Link
                 key={c.id}
@@ -59,6 +62,6 @@ export default async function CategoriesPage() {
           </div>
         )}
       </div>
-    </main>
+    </main >
   );
 }
