@@ -157,10 +157,10 @@ export default async function Home({ searchParams }) {
                       key={`thumb-${idx}`}
                       className="relative h-[92px] w-[92px] overflow-hidden rounded-2xl ring-2 ring-white/80"
                     >
-                      {featuredProduct ? (
+                      {featuredProduct && featuredProduct.images && featuredProduct.images.length > idx ? (
                         <SafeImage
                           src={getSafeImageUrl(
-                            featuredProduct.images.slice(idx),
+                            featuredProduct.images, idx
                           )}
                           alt={`${featuredProduct.title} ${idx + 1}`}
                           fill
@@ -192,42 +192,56 @@ export default async function Home({ searchParams }) {
           </Link>
         </div>
 
-        <div className="mt-6 sm:mt-8 grid grid-cols-2 gap-x-3 gap-y-8 sm:gap-6 lg:grid-cols-4">
-          {newDrops.slice(0, 4).map((p) => (
-            <Link key={p.id} href={`/products/${p.id}`} className="group flex flex-col h-full">
-              <div className="rounded-[20px] sm:rounded-[30px] bg-white p-[4px] sm:p-[6px] shadow-[0_18px_30px_rgba(0,0,0,0.06)] flex flex-col flex-1">
-                <div className="relative overflow-hidden rounded-[16px] sm:rounded-[24px] bg-[#f1f2f3]">
-                  <span className="absolute rounded-br-2xl left-0 top-0 z-10 bg-blue-600 px-3 py-1.5 sm:px-4 sm:py-2 text-[10px] sm:text-xs font-semibold text-white">
-                    New
-                  </span>
-                  <div className="relative aspect-square">
-                    <div className="absolute inset-4 sm:inset-10">
-                      <SafeImage
-                        src={getSafeImageUrl(p.images)}
-                        alt={p.title}
-                        fill
-                        sizes="(max-width: 640px) 45vw, (max-width: 1024px) 45vw, 22vw"
-                        className="object-contain drop-shadow-[0_18px_18px_rgba(0,0,0,0.18)] transition-transform duration-300 group-hover:scale-[1.03]"
-                      />
+        {newDrops.length === 0 ? (
+          <div className="mt-8 flex flex-col items-center justify-center rounded-[32px] bg-white py-16 text-center shadow-sm">
+            <div className="mb-4 rounded-full bg-zinc-100 p-4">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="text-zinc-400">
+                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
+            <h3 className="text-xl font-bold text-zinc-900">No products found</h3>
+            <p className="mt-2 text-sm text-zinc-500 max-w-[280px]">
+              We couldn't find any products matching your search. Try adjusting your filters or browsing categories.
+            </p>
+          </div>
+        ) : (
+          <div className="mt-6 sm:mt-8 grid grid-cols-2 gap-x-3 gap-y-8 sm:gap-6 lg:grid-cols-4">
+            {newDrops.slice(0, 4).map((p) => (
+              <Link key={p.id} href={`/products/${p.id}`} className="group flex flex-col h-full">
+                <div className="rounded-[20px] sm:rounded-[30px] bg-white p-[4px] sm:p-[6px] shadow-[0_18px_30px_rgba(0,0,0,0.06)] flex flex-col flex-1">
+                  <div className="relative overflow-hidden rounded-[16px] sm:rounded-[24px] bg-[#f1f2f3]">
+                    <span className="absolute rounded-br-2xl left-0 top-0 z-10 bg-blue-600 px-3 py-1.5 sm:px-4 sm:py-2 text-[10px] sm:text-xs font-semibold text-white">
+                      New
+                    </span>
+                    <div className="relative aspect-square">
+                      <div className="absolute inset-4 sm:inset-10">
+                        <SafeImage
+                          src={getSafeImageUrl(p.images)}
+                          alt={p.title}
+                          fill
+                          sizes="(max-width: 640px) 45vw, (max-width: 1024px) 45vw, 22vw"
+                          className="object-contain drop-shadow-[0_18px_18px_rgba(0,0,0,0.18)] transition-transform duration-300 group-hover:scale-[1.03]"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="mt-4 sm:mt-4 text-[14px] sm:text-[18px] font-black uppercase leading-4 sm:leading-6 tracking-tight text-zinc-900 line-clamp-2">
-                {p.title}
-              </div>
+                <div className="mt-4 sm:mt-4 text-[14px] sm:text-[18px] font-black uppercase leading-4 sm:leading-6 tracking-tight text-zinc-900 line-clamp-2">
+                  {p.title}
+                </div>
 
-              <div className="mt-4 sm:mt-3 mt-auto inline-flex h-10 w-full sm:h-12 items-center justify-center rounded-xl bg-zinc-900 px-2 sm:px-4 text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-white transition-colors group-hover:bg-zinc-800">
-                <span className="hidden sm:inline">View product -</span>
-                <span className="sm:hidden">View</span>
-                <span className="ml-1 sm:ml-2 text-amber-400">
-                  {formatPrice(p.price)}
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
+                <div className="mt-4 sm:mt-3 mt-auto inline-flex h-10 w-full sm:h-12 items-center justify-center rounded-xl bg-zinc-900 px-2 sm:px-4 text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-white transition-colors group-hover:bg-zinc-800">
+                  <span className="hidden sm:inline">View product -</span>
+                  <span className="sm:hidden">View</span>
+                  <span className="ml-1 sm:ml-2 text-amber-400">
+                    {formatPrice(p.price)}
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
       </section>
 
       <section className="mt-14">
@@ -247,64 +261,73 @@ export default async function Home({ searchParams }) {
           </button>
         </div>
 
-        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
-          {products.slice(0, 3).map((p, idx) => (
-            <div
-              key={`review-card-${p.id}`}
-              className="overflow-hidden rounded-[26px] bg-white ring-1 ring-zinc-200"
-            >
-              <div className="relative px-6 py-5">
-                <div className="text-base font-extrabold text-zinc-950">
-                  Good Quality
-                </div>
-                <div className="mt-1 max-w-xs text-sm leading-5 text-zinc-500">
-                  I highly recommend shopping from kicks
+        {products.length === 0 ? (
+          <div className="mt-8 flex flex-col items-center justify-center rounded-[32px] bg-white py-16 text-center ring-1 ring-zinc-200">
+            <h3 className="text-xl font-bold text-zinc-900">No reviews yet</h3>
+            <p className="mt-2 text-sm text-zinc-500">
+              Check back later for customer experiences.
+            </p>
+          </div>
+        ) : (
+          <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+            {products.slice(0, 3).map((p, idx) => (
+              <div
+                key={`review-card-${p.id}`}
+                className="overflow-hidden rounded-[26px] bg-white ring-1 ring-zinc-200"
+              >
+                <div className="relative px-6 py-5">
+                  <div className="text-base font-extrabold text-zinc-950">
+                    Good Quality
+                  </div>
+                  <div className="mt-1 max-w-xs text-sm leading-5 text-zinc-500">
+                    I highly recommend shopping from kicks
+                  </div>
+
+                  <div className="mt-3 flex items-center gap-2">
+                    <div className="flex items-center gap-1">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <svg
+                          key={i}
+                          width="14"
+                          height="14"
+                          viewBox="0 0 24 24"
+                          fill="#f59e0b"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path d="M12 17.3 5.8 21l1.6-7.1L2 9.3l7.2-.6L12 2l2.8 6.7 7.2.6-5.4 4.6 1.6 7.1L12 17.3Z" />
+                        </svg>
+                      ))}
+                    </div>
+                    <div className="text-sm font-semibold text-zinc-700">
+                      5.0
+                    </div>
+                  </div>
+
+                  <div className="absolute right-5 top-5 h-12 w-12 overflow-hidden rounded-full bg-zinc-200 ring-2 ring-white">
+                    <SafeImage
+                      src={getSafeImageUrl(p.images)}
+                      alt={p.title}
+                      fill
+                      sizes="48px"
+                      className="object-cover"
+                    />
+                  </div>
                 </div>
 
-                <div className="mt-3 flex items-center gap-2">
-                  <div className="flex items-center gap-1">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <svg
-                        key={i}
-                        width="14"
-                        height="14"
-                        viewBox="0 0 24 24"
-                        fill="#f59e0b"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M12 17.3 5.8 21l1.6-7.1L2 9.3l7.2-.6L12 2l2.8 6.7 7.2.6-5.4 4.6 1.6 7.1L12 17.3Z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <div className="text-sm font-semibold text-zinc-700">
-                    5.0
-                  </div>
-                </div>
-
-                <div className="absolute right-5 top-5 h-12 w-12 overflow-hidden rounded-full bg-zinc-200 ring-2 ring-white">
+                <div className="relative aspect-[4/3] bg-zinc-200">
                   <SafeImage
                     src={getSafeImageUrl(p.images)}
                     alt={p.title}
                     fill
-                    sizes="48px"
+                    sizes="(max-width: 768px) 92vw, 33vw"
                     className="object-cover"
+                    priority={idx === 0}
                   />
                 </div>
               </div>
-
-              <div className="relative aspect-[4/3] bg-zinc-200">
-                <SafeImage
-                  src={getSafeImageUrl(p.images)}
-                  alt={p.title}
-                  fill
-                  sizes="(max-width: 768px) 92vw, 33vw"
-                  className="object-cover"
-                  priority={idx === 0}
-                />
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </section>
     </main>
   );

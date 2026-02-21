@@ -25,30 +25,39 @@ export default async function CategoriesPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4">
-          {categories.map((c) => (
-            <Link
-              key={c.id}
-              href={{ pathname: "/", query: { category: c.id } }}
-              className="group overflow-hidden rounded-2xl border border-zinc-200 bg-white transition-shadow hover:shadow-sm"
-            >
-              <div className="relative aspect-[4/3] w-full bg-zinc-100">
-                <SafeImage
-                  src={getSafeImageUrl(c.image)}
-                  alt={c.name}
-                  fill
-                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                  className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                />
-              </div>
-              <div className="p-3 sm:p-4">
-                <div className="line-clamp-1 text-sm font-semibold text-zinc-950">
-                  {c.name}
+        {categories.length === 0 ? (
+          <div className="mt-8 flex flex-col items-center justify-center rounded-[32px] bg-white py-16 text-center ring-1 ring-zinc-200">
+            <h3 className="text-xl font-bold text-zinc-900">No categories found</h3>
+            <p className="mt-2 text-sm text-zinc-500 max-w-[280px]">
+              We currently don't have any categories available to display.
+            </p>
+          </div>
+        ) : (
+          <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5 lg:grid-cols-4">
+            {categories.map((c) => (
+              <Link
+                key={c.id}
+                href={{ pathname: "/", query: { category: c.id } }}
+                className="group overflow-hidden rounded-[20px] bg-white transition-all hover:-translate-y-1 hover:shadow-lg ring-1 ring-zinc-200"
+              >
+                <div className="relative aspect-[4/3] w-full bg-[#f1f2f3]">
+                  <SafeImage
+                    src={getSafeImageUrl(c.image)}
+                    alt={c.name}
+                    fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                  />
                 </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+                <div className="p-4 sm:p-5">
+                  <div className="line-clamp-2 text-sm font-black uppercase text-zinc-900">
+                    {c.name}
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </main>
   );

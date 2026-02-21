@@ -1,10 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useCart } from "../context/CartContext";
+import Swal from "sweetalert2";
 
 export default function ProductOptions({ product }) {
-    const { addToCart } = useCart();
+    const { addToCart, cartItems } = useCart();
+    const router = useRouter();
 
     // Default mock colors and sizes since API doesn't provide them
     const colors = [
@@ -17,14 +20,29 @@ export default function ProductOptions({ product }) {
     const [selectedColor, setSelectedColor] = useState(colors[0].id);
     const [selectedSize, setSelectedSize] = useState("41");
 
+    const itemInCart = cartItems.some(
+        (item) => item.id === product.id && item.size === selectedSize && item.color === selectedColor
+    );
+
     const handleAddToCart = () => {
-        addToCart(product, selectedSize, selectedColor, 1);
+        if (!itemInCart) {
+            addToCart(product, selectedSize, selectedColor, 1);
+            window.dispatchEvent(new CustomEvent("open-cart"));
+        }
     };
 
     const handleBuyNow = () => {
-        addToCart(product, selectedSize, selectedColor, 1);
-        // Redirect to cart page
-        window.location.href = "/cart";
+        if (cartItems.length === 0) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Cart is empty',
+                text: 'Please add some products to your cart first before proceeding to checkout.',
+                confirmButtonColor: '#2563eb',
+            });
+            return;
+        }
+
+        router.push("/cart");
     };
 
     return (
@@ -76,9 +94,13 @@ export default function ProductOptions({ product }) {
                 <button
                     type="button"
                     onClick={handleAddToCart}
-                    className="flex h-11 flex-1 items-center justify-center rounded-xl bg-zinc-900 text-xs font-semibold uppercase tracking-widest text-white transition-all hover:bg-zinc-800 hover:scale-105 active:scale-95"
+                    disabled={itemInCart}
+                    className={`flex h-11 flex-1 items-center justify-center rounded-xl text-xs font-semibold uppercase tracking-widest text-white transition-all ${itemInCart
+                            ? "bg-emerald-600 cursor-not-allowed"
+                            : "bg-zinc-900 hover:bg-zinc-800 hover:scale-105 active:scale-95"
+                        }`}
                 >
-                    Add to cart
+                    {itemInCart ? "Added to cart ✓" : "Add to cart"}
                 </button>
                 <button
                     type="button"

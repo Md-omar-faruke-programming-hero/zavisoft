@@ -132,7 +132,7 @@ export default function CartOverview() {
                                                 onChange={(e) => updateQuantity(item.id, item.size, item.color, parseInt(e.target.value))}
                                                 className="bg-transparent text-sm font-semibold text-zinc-800 outline-none cursor-pointer"
                                             >
-                                                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
+                                                {Array.from({ length: Math.max(10, item.quantity) }, (_, i) => i + 1).map((num) => (
                                                     <option key={num} value={num}>
                                                         {num}
                                                     </option>

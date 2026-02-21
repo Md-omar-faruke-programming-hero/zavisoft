@@ -50,7 +50,7 @@ function getSafeImageUrl(images, index = 0) {
 }
 
 export default function HeaderCartCount() {
-    const { getCartCount, isLoaded, cartItems, getCartTotal } = useCart();
+    const { getCartCount, isLoaded, cartItems, getCartTotal, removeFromCart } = useCart();
     const [isOpen, setIsOpen] = useState(false);
     const popoverRef = useRef(null);
     const router = useRouter();
@@ -61,8 +61,18 @@ export default function HeaderCartCount() {
                 setIsOpen(false);
             }
         }
+
+        function handleOpenCart() {
+            setIsOpen(true);
+        }
+
         document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
+        window.addEventListener("open-cart", handleOpenCart);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+            window.removeEventListener("open-cart", handleOpenCart);
+        };
     }, []);
 
     if (!isLoaded) {
@@ -111,10 +121,23 @@ export default function HeaderCartCount() {
                                             className="object-contain p-1"
                                         />
                                     </div>
-                                    <div className="flex flex-1 flex-col justify-center">
-                                        <h4 className="text-sm font-black uppercase tracking-tight text-zinc-900 line-clamp-1">
-                                            {item.title}
-                                        </h4>
+                                    <div className="flex flex-1 flex-col py-1">
+                                        <div className="flex items-start justify-between gap-2">
+                                            <h4 className="text-sm font-black uppercase tracking-tight text-zinc-900 line-clamp-1">
+                                                {item.title}
+                                            </h4>
+                                            <button
+                                                onClick={() => removeFromCart(item.id, item.size, item.color)}
+                                                className="text-zinc-400 hover:text-red-500 transition-colors shrink-0"
+                                                aria-label="Remove item"
+                                            >
+                                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                    <path d="M3 6h18"></path>
+                                                    <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                                                    <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
                                         <div className="text-xs text-zinc-500 font-semibold mt-1 flex gap-2 items-center">
                                             <span>Size {item.size}</span>
                                             <span className="h-1 w-1 rounded-full bg-zinc-300"></span>

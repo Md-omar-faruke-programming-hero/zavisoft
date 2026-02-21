@@ -37,9 +37,9 @@ export function CartProvider({ children }) {
             );
 
             if (existingItemIndex >= 0) {
-                const newItems = [...prevItems];
-                newItems[existingItemIndex].quantity += quantity;
-                return newItems;
+                // If it exists, we do nothing and return the same array
+                // The user can only increase quantity from the cart page itself
+                return prevItems;
             }
 
             return [...prevItems, { ...product, size, color, quantity: Math.max(1, quantity) }];
