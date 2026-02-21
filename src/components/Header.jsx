@@ -1,15 +1,31 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import HeaderCartCount from "./HeaderCartCount";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
+    const router = useRouter();
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
+
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        if (searchQuery.trim()) {
+            router.push(`/?q=${encodeURIComponent(searchQuery)}`);
+            setIsSearchOpen(false);
+        }
+    };
+
     return (
         <header className="pt-6 md:pt-8">
             <div className="flex items-center justify-between gap-4 rounded-[26px] bg-white px-5 py-4 shadow-sm ring-1 ring-zinc-200 md:px-8">
                 <div className="flex items-center gap-3">
                     <button
                         type="button"
-                        className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-zinc-100 text-zinc-900 hover:bg-zinc-200 md:hidden"
+                        className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-zinc-100 text-zinc-900 transition-all hover:bg-zinc-200 hover:scale-105 active:scale-95 md:hidden"
                         aria-label="Menu"
                     >
                         <svg
@@ -33,9 +49,9 @@ export default function Header() {
                             <span>New Drops</span>
                             <span aria-hidden="true">🔥</span>
                         </Link>
-                        <button
-                            type="button"
-                            className="inline-flex items-center gap-1"
+                        <Link
+                            href="/?category=1"
+                            className="inline-flex items-center gap-1 transition-all hover:text-[#4A69E2] hover:scale-105 active:scale-95"
                         >
                             <span>Men</span>
                             <svg
@@ -54,10 +70,10 @@ export default function Header() {
                                     strokeLinejoin="round"
                                 />
                             </svg>
-                        </button>
-                        <button
-                            type="button"
-                            className="inline-flex items-center gap-1"
+                        </Link>
+                        <Link
+                            href="/?category=2"
+                            className="inline-flex items-center gap-1 transition-all hover:text-[#4A69E2] hover:scale-105 active:scale-95"
                         >
                             <span>Women</span>
                             <svg
@@ -76,7 +92,7 @@ export default function Header() {
                                     strokeLinejoin="round"
                                 />
                             </svg>
-                        </button>
+                        </Link>
                     </nav>
                 </div>
 
@@ -95,35 +111,59 @@ export default function Header() {
                 </Link>
 
                 <div className="flex items-center gap-3">
-                    <button
-                        type="button"
-                        className="inline-flex h-10 w-10 items-center justify-center rounded-full text-zinc-900 hover:bg-zinc-100"
-                        aria-label="Search"
-                    >
-                        <svg
-                            width="18"
-                            height="18"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
+                    <div className="relative">
+                        <button
+                            type="button"
+                            onClick={() => setIsSearchOpen(!isSearchOpen)}
+                            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-zinc-900 transition-all hover:bg-zinc-100 hover:scale-105 active:scale-95"
+                            aria-label="Search"
                         >
-                            <path
-                                d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                            />
-                            <path
-                                d="M16.5 16.5 21 21"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                            />
-                        </svg>
-                    </button>
+                            <svg
+                                width="18"
+                                height="18"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                />
+                                <path
+                                    d="M16.5 16.5 21 21"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                />
+                            </svg>
+                        </button>
+
+                        {isSearchOpen && (
+                            <div className="absolute right-0 top-12 z-50 w-64 sm:w-80 rounded-2xl bg-white p-3 shadow-xl ring-1 ring-zinc-200">
+                                <form onSubmit={handleSearchSubmit} className="flex gap-2">
+                                    <input
+                                        type="text"
+                                        autoFocus
+                                        value={searchQuery}
+                                        onChange={(e) => setSearchQuery(e.target.value)}
+                                        placeholder="Search for products..."
+                                        className="w-full rounded-xl bg-zinc-100 px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                                    />
+                                    <button
+                                        type="submit"
+                                        className="rounded-xl bg-blue-600 px-4 text-xs font-bold text-white transition-all hover:bg-blue-500 hover:scale-105 active:scale-95"
+                                    >
+                                        GO
+                                    </button>
+                                </form>
+                            </div>
+                        )}
+                    </div>
 
                     <button
                         type="button"
-                        className="inline-flex h-10 w-10 items-center justify-center rounded-full text-zinc-900 hover:bg-zinc-100"
+                        className="inline-flex h-10 w-10 items-center justify-center rounded-full text-zinc-900 transition-all hover:bg-zinc-100 hover:scale-105 active:scale-95"
                         aria-label="Profile"
                     >
                         <svg

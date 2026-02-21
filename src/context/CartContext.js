@@ -30,10 +30,10 @@ export function CartProvider({ children }) {
         }
     }, [cartItems, isLoaded]);
 
-    const addToCart = (product, size = "41", quantity = 1) => {
+    const addToCart = (product, size = "41", color = "black", quantity = 1) => {
         setCartItems((prevItems) => {
             const existingItemIndex = prevItems.findIndex(
-                (item) => item.id === product.id && item.size === size
+                (item) => item.id === product.id && item.size === size && item.color === color
             );
 
             if (existingItemIndex >= 0) {
@@ -42,20 +42,20 @@ export function CartProvider({ children }) {
                 return newItems;
             }
 
-            return [...prevItems, { ...product, size, quantity: Math.max(1, quantity) }];
+            return [...prevItems, { ...product, size, color, quantity: Math.max(1, quantity) }];
         });
     };
 
-    const removeFromCart = (productId, size) => {
+    const removeFromCart = (productId, size, color) => {
         setCartItems((prevItems) =>
-            prevItems.filter((item) => !(item.id === productId && item.size === size))
+            prevItems.filter((item) => !(item.id === productId && item.size === size && item.color === color))
         );
     };
 
-    const updateQuantity = (productId, size, quantity) => {
+    const updateQuantity = (productId, size, color, quantity) => {
         setCartItems((prevItems) =>
             prevItems.map((item) =>
-                item.id === productId && item.size === size
+                item.id === productId && item.size === size && item.color === color
                     ? { ...item, quantity: Math.max(1, quantity) }
                     : item
             )

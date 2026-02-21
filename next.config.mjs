@@ -11,6 +11,7 @@ const nextConfig = {
       { protocol: "https", hostname: "cdn2.thecatapi.com" },
       { protocol: "https", hostname: "loremflickr.com" },
       { protocol: "https", hostname: "placehold.co" },
+      { protocol: "https", hostname: "pravatar.cc" },
     ],
   },
 };

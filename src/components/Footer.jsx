@@ -23,7 +23,7 @@ export default function Footer() {
                                 />
                                 <button
                                     type="button"
-                                    className="h-11 rounded-xl bg-zinc-950 px-6 text-xs font-semibold uppercase tracking-widest text-white hover:bg-zinc-900"
+                                    className="h-11 rounded-xl bg-zinc-950 px-6 text-xs font-semibold uppercase tracking-widest text-white transition-all hover:bg-zinc-900 hover:scale-105 active:scale-95"
                                 >
                                     Submit
                                 </button>
@@ -158,9 +158,7 @@ export default function Footer() {
                     </div>
                 </div>
             </div>
-            <div className="mt-6 text-center text-sm text-[#232321]/80">
-                <p>© All rights reserved </p>
-            </div>
+            <p className="mt-6 text-center text-sm text-[#232321]/80">© All rights reserved</p>
         </footer>
     );
 }
