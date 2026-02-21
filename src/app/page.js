@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getCategories, getProducts } from "../lib/platzi";
 import CategoriesCarousel from "../components/CategoriesCarousel";
 
+// Formats a numeric value into a US Dollar currency string
 function formatPrice(value) {
   try {
     return new Intl.NumberFormat("en-US", {
@@ -15,6 +16,7 @@ function formatPrice(value) {
   }
 }
 
+// Safely validates and extracts an image URL from various input formats
 function getSafeImageUrl(images, index = 0) {
   try {
     let imgArray = images;
@@ -46,17 +48,20 @@ function getSafeImageUrl(images, index = 0) {
   }
 }
 
+// Normalizes a string by trimming whitespace and converting to lowercase for search
 function normalizeText(value) {
   return String(value ?? "")
     .trim()
     .toLowerCase();
 }
 
+// Main Home Page Component responsible for fetching data and rendering the landing page UI
 export default async function Home({ searchParams }) {
   const categoryId =
     typeof searchParams?.category === "string" ? searchParams.category : "";
   const query = typeof searchParams?.q === "string" ? searchParams.q : "";
 
+  // Fetch categories and products data concurrently from the API
   const [categories, products] = await Promise.all([
     getCategories(),
     getProducts({
@@ -66,6 +71,7 @@ export default async function Home({ searchParams }) {
     }),
   ]);
 
+  // Process and filter products based on the search query parameter
   const q = normalizeText(query);
   const filteredProducts = q
     ? products.filter((p) => {
@@ -75,6 +81,7 @@ export default async function Home({ searchParams }) {
     })
     : products;
 
+  // Extract structured data slices used by different UI sections on the page
   const featuredProduct = filteredProducts[0] ?? products[0];
   const newDrops = filteredProducts.slice(0, 8);
   const categoriesPreview = categories.slice(0, 4);
@@ -102,6 +109,7 @@ export default async function Home({ searchParams }) {
 
   return (
     <main className="pb-12">
+      {/* Hero Section: Main Page Headline (DO IT RIGHT) */}
       <section className="pt-8 md:pt-10">
         <h1 className="text-center text-[48px] sm:text-[72px] font-black leading-none tracking-tight text-zinc-950 md:text-[160.5px]">
           <span>DO IT </span>
@@ -109,6 +117,7 @@ export default async function Home({ searchParams }) {
         </h1>
       </section>
 
+      {/* Featured Banner Section: Highlights the most prominent product */}
       <section className="mt-8 md:mt-10">
         <div className="relative overflow-hidden rounded-[32px] sm:rounded-[42px] bg-[#f3b13a] p-3 sm:p-5 md:p-8">
           <div className="relative overflow-hidden rounded-[24px] sm:rounded-[34px] bg-black/10">
@@ -177,6 +186,7 @@ export default async function Home({ searchParams }) {
         </div>
       </section>
 
+      {/* New Drops Section: Grid displaying recent products or search results */}
       <section className="mt-10 md:mt-12">
         <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 sm:gap-6">
           <h2 className="text-[32px] sm:text-[40px] font-black leading-none tracking-tight text-zinc-950 md:text-[56px]">
@@ -244,10 +254,12 @@ export default async function Home({ searchParams }) {
         )}
       </section>
 
+      {/* Categories Section: Interactive carousel to explore product categories */}
       <section className="mt-14">
         <CategoriesCarousel categories={categories} />
       </section>
 
+      {/* Reviews Section: Displays customer reviews and featured product thumbnails */}
       <section className="mt-10 md:mt-14">
         <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 sm:gap-6">
           <h2 className="text-[36px] sm:text-[44px] font-black leading-none tracking-tight text-zinc-950 md:text-[64px]">
