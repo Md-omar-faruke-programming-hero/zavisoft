@@ -97,14 +97,14 @@ export default function ProductOptions({ product }) {
                     disabled={itemInCart}
                     className={`flex h-11 flex-1 items-center justify-center rounded-xl text-xs font-semibold uppercase tracking-widest text-white transition-all ${itemInCart
                         ? "bg-emerald-600 cursor-not-allowed"
-                        : "bg-zinc-900 hover:bg-zinc-800 hover:scale-105 active:scale-95"
+                        : "bg-zinc-900 hover:bg-blue-600 hover:scale-105 active:scale-95"
                         }`}
                 >
                     {itemInCart ? "Added to cart ✓" : "Add to cart"}
                 </button>
                 <button
                     type="button"
-                    className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-zinc-900 text-white transition-all hover:bg-zinc-800 hover:scale-105 active:scale-95"
+                    className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-zinc-900 text-white transition-all hover:bg-blue-600 hover:scale-105 active:scale-95"
                     aria-label="Wishlist"
                 >
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

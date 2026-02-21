@@ -23,7 +23,7 @@ export default function Footer() {
                                 />
                                 <button
                                     type="button"
-                                    className="h-11 rounded-xl bg-zinc-950 px-6 text-xs font-semibold uppercase tracking-widest text-white transition-all hover:bg-zinc-900 hover:scale-105 active:scale-95"
+                                    className="h-11 rounded-xl bg-zinc-950 px-6 text-xs font-semibold uppercase tracking-widest text-white transition-all hover:bg-blue-600 hover:scale-105 active:scale-95"
                                 >
                                     Submit
                                 </button>

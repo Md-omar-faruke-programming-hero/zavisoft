@@ -189,7 +189,7 @@ export default function CartOverview() {
                 <button
                     type="button"
                     disabled={cartItems.length === 0}
-                    className="mt-6 flex h-14 w-full items-center justify-center rounded-xl bg-zinc-900 text-xs font-semibold uppercase tracking-widest text-white shadow-lg transition-all hover:bg-zinc-800 hover:scale-[1.02] active:scale-[0.98] disabled:bg-zinc-400 disabled:cursor-not-allowed disabled:hover:scale-100"
+                    className="mt-6 flex h-14 w-full items-center justify-center rounded-xl bg-zinc-900 text-xs font-semibold uppercase tracking-widest text-white shadow-lg transition-all hover:bg-blue-600 hover:scale-[1.02] active:scale-[0.98] disabled:bg-zinc-400 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
                     Checkout
                 </button>

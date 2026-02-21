@@ -107,7 +107,7 @@ export default function RelatedProductsCarousel({ products }) {
                         <button
                             onClick={handleNext}
                             aria-label="Next page"
-                            className="flex h-8 w-8 items-center justify-center rounded-md bg-zinc-900 text-white transition-all hover:bg-zinc-800 hover:scale-105 active:scale-95"
+                            className="flex h-8 w-8 items-center justify-center rounded-md bg-zinc-900 text-white transition-all hover:bg-blue-600 hover:scale-105 active:scale-95"
                         >
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                                 <path
@@ -148,7 +148,7 @@ export default function RelatedProductsCarousel({ products }) {
                             {p.title}
                         </div>
                         <div className="mt-auto pt-3">
-                            <div className="inline-flex h-10 w-full items-center justify-center rounded-xl bg-zinc-900 px-4 text-[10px] font-semibold uppercase tracking-widest text-white transition-colors group-hover:bg-zinc-800">
+                            <div className="inline-flex h-10 w-full items-center justify-center rounded-xl bg-zinc-900 px-4 text-[10px] font-semibold uppercase tracking-widest text-white transition-colors group-hover:bg-blue-600">
                                 <span>View product -</span>
                                 <span className="ml-2 text-amber-400">
                                     {formatPrice(p.price)}

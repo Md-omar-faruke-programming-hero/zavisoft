@@ -27,9 +27,10 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
+        suppressHydrationWarning
       >
         <CartProvider>
           <div className="flex min-h-screen flex-col overflow-hidden bg-[#e9e6df] text-zinc-950">

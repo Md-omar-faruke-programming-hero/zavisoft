@@ -166,7 +166,7 @@ export default function HeaderCartCount() {
                                     setIsOpen(false);
                                     router.push("/cart");
                                 }}
-                                className="w-full rounded-xl bg-zinc-900 py-3 text-xs font-semibold uppercase tracking-widest text-white transition-all hover:bg-zinc-800 hover:scale-[1.02] active:scale-[0.98]"
+                                className="w-full rounded-xl bg-zinc-900 py-3 text-xs font-semibold uppercase tracking-widest text-white transition-all hover:bg-blue-600 hover:scale-[1.02] active:scale-[0.98]"
                             >
                                 View Cart & Checkout
                             </button>

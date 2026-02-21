@@ -60,6 +60,7 @@ export default async function CartPage() {
 
     return (
         <main className="pt-10 md:pt-12">
+
             {/* Promo Banner Section: Displays current sales or general information */}
             <section className="mb-10">
                 <h1 className="text-[32px] font-black leading-tight text-zinc-900 md:text-[40px]">
@@ -95,7 +96,7 @@ export default async function CartPage() {
                                 />
                             </svg>
                         </button>
-                        <button className="flex h-8 w-8 items-center justify-center rounded-md bg-zinc-900 text-white transition-all hover:bg-zinc-800 hover:scale-105 active:scale-95">
+                        <button className="flex h-8 w-8 items-center justify-center rounded-md bg-zinc-900 text-white transition-all hover:bg-blue-600 hover:scale-105 active:scale-95">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                                 <path
                                     d="m9 18 6-6-6-6"
@@ -133,7 +134,7 @@ export default async function CartPage() {
                             <div className="mt-4 text-sm font-black uppercase leading-5 tracking-tight text-zinc-900">
                                 {p.title}
                             </div>
-                            <div className="mt-3 inline-flex h-10 w-full items-center justify-center rounded-xl bg-zinc-900 px-4 text-[10px] font-semibold uppercase tracking-widest text-white hover:bg-zinc-800">
+                            <div className="mt-3 inline-flex h-10 w-full items-center justify-center rounded-xl bg-zinc-900 px-4 text-[10px] font-semibold uppercase tracking-widest text-white hover:bg-blue-600">
                                 <span>View product -</span>
                                 <span className="ml-2 text-amber-400">
                                     {formatPrice(p.price)}

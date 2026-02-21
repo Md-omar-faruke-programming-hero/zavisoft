@@ -43,7 +43,7 @@ export default function Error({ error, reset }) {
                 </button>
                 <Link
                     href="/"
-                    className="inline-flex h-11 items-center justify-center rounded-xl bg-zinc-900 px-6 text-sm font-semibold text-white transition-all hover:bg-zinc-800 active:scale-95"
+                    className="inline-flex h-11 items-center justify-center rounded-xl bg-zinc-900 px-6 text-sm font-semibold text-white transition-all hover:bg-blue-600 active:scale-95"
                 >
                     Go back home
                 </Link>
